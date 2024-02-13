@@ -1,0 +1,4 @@
+abseil source: file-without-copyright-information
+abseil source: no-debian-changes
+abseil source: not-binnmuable-any-depends-any
+abseil source: weak-library-dev-dependency
