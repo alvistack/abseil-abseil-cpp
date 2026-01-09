@@ -1,0 +1,4 @@
+libabsl20250127: initial-upload-closes-no-bugs
+libabsl20250127: library-not-linked-against-libc
+libabsl20250127: package-name-doesnt-match-sonames
+libabsl20250127: shared-library-lacks-prerequisites
