@@ -1,0 +1,43 @@
+#!/usr/bin/make -f
+
+SHELL := /bin/bash
+
+override_dh_autoreconf:
+
+override_dh_auto_configure:
+	mkdir -p build
+	pushd build && \
+		cmake \
+			.. \
+			-DABSL_BUILD_TESTING=OFF \
+			-DABSL_ENABLE_INSTALL=ON \
+			-DBUILD_SHARED_LIBS=ON \
+			-DCMAKE_BUILD_TYPE=Release \
+			-DCMAKE_INSTALL_PREFIX=/usr && \
+	popd
+
+override_dh_auto_build:
+	pushd build && \
+		cmake \
+			--build . \
+			--parallel 10 \
+			--config Release && \
+	popd
+
+override_dh_auto_install:
+	pushd build && \
+		export DESTDIR=../debian/tmp && \
+		cmake \
+			--install . && \
+	popd
+	fdupes -qnrps debian/tmp
+
+override_dh_install:
+	dh_install
+
+override_dh_auto_test:
+
+override_dh_auto_clean:
+
+%:
+	dh $@
